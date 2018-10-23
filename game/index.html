@@ -21,7 +21,7 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
+            gravity: { y: 1000 },
             debug: false
         }
     },
@@ -86,7 +86,7 @@ function create ()
 
     this.anims.create({
         key: 'turn',
-        frames: [ { key: 'dude', frame: 4 } ],
+        frames: [ { key: 'dude', frame: 10 } ],
         frameRate: 20
     });
 
@@ -116,8 +116,7 @@ function create ()
 
     bombs = this.physics.add.group();
 
-    //  The score
-    scoreText = this.add.text(16, 16, 'sccore: 0', { fontSize: '12px', fill: '#000' });
+    
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
@@ -158,9 +157,12 @@ function update ()
 
     if (cursors.up.isDown && player.body.touching.down)
     {
-        player.setVelocityY(-180);
+        player.setVelocityY( -700);
     }
 }
+
+//  The score
+scoreText = this.add.text(16, 16, 'score: ' + score  , { fontSize: '12px', fill: '#000' });
 
 function collectStar (player, star)
 {
@@ -168,13 +170,15 @@ function collectStar (player, star)
 
     //  Add and update the score
     score += 1;
+
+
   
 
     if (stars.countActive(true) === 0)
     {
         //  A new batch of stars to collect
         stars.children.iterate(function (child) {
-
+            
             child.enableBody(true, child.x, 0, true, true);
 
         });
