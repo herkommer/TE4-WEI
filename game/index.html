@@ -118,7 +118,7 @@ function create ()
     bombs = this.physics.add.group();
 
     //  The score
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '12px', fill: '#000' });
+    scoreText = this.add.text(16, 16, 'Score: 0', { font: '40px Charcoal', fill: '#000' });
 
 
     //  Collide the player and the stars and the bombs with the platforms
@@ -166,7 +166,7 @@ function update ()
 }
 
 //  The score
-scoreText = this.add.text(16, 16, 'score: ' + score  , { fontSize: '12px', fill: '#000' });
+scoreText = this.add.text(16, 16, 'score: ' + score  , { font: '40px Charcoal', fill: '#000',  });
 
 function collectStar (player, star)
 {
@@ -175,7 +175,7 @@ function collectStar (player, star)
     pointChange += 100;
     score += pointChange;
 
-    scoreText.setText('score: ' + score);
+    scoreText.setText('Score: ' + score);
 
     if (stars.countActive(true) === 0)
     {
