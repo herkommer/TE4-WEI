@@ -116,7 +116,9 @@ function create ()
 
     bombs = this.physics.add.group();
 
-    
+    //  The score
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '12px', fill: '#000' });
+
 
     //  Collide the player and the stars with the platforms
     this.physics.add.collider(player, platforms);
@@ -167,12 +169,10 @@ scoreText = this.add.text(16, 16, 'score: ' + score  , { fontSize: '12px', fill:
 function collectStar (player, star)
 {
     star.disableBody(true, true);
-
     //  Add and update the score
     score += 1;
 
-
-  
+    scoreText.setText('score: ' + score);
 
     if (stars.countActive(true) === 0)
     {
