@@ -71,11 +71,14 @@ function create ()
     platforms.create(750, 220, 'ground');
 
     // The player and its settings
-    player = this.physics.add.sprite(100, 450, 'dude');
+    player = this.physics.add.sprite(100, 510, 'dude');
 
     //  Player physics properties. 
 
     player.setCollideWorldBounds(true);
+
+    //Player bounce
+    player.setBounce(0.4);
 
     //  Our player animations, turning, walking left and walking right.
     this.anims.create({
@@ -97,6 +100,7 @@ function create ()
         frameRate: 10,
         repeat: -1
     });
+    
 
     //  Input Events
     cursors = this.input.keyboard.createCursorKeys();
@@ -114,6 +118,7 @@ function create ()
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
 
     });
+
 
     bombs = this.physics.add.group();
 
