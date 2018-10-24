@@ -40,6 +40,7 @@ var cursors;
 var score = 0;
 var gameOver = false;
 var scoreText;
+var pointChange = 0;
 
 var game = new Phaser.Game(config);
 
@@ -171,7 +172,8 @@ function collectStar (player, star)
 {
     star.disableBody(true, true);
     //  Add and update the score
-    score += 1;
+    pointChange += 100;
+    score += pointChange;
 
     scoreText.setText('score: ' + score);
 
