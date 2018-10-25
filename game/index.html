@@ -41,6 +41,8 @@ var score = 0;
 var gameOver = false;
 var scoreText;
 var pointChange = 0;
+var gameOverText;
+var gameOverButton;
 
 var game = new Phaser.Game(config);
 
@@ -123,6 +125,12 @@ function create ()
     bombs = this.physics.add.group();
 
     //  The score
+    gameOverText = this.add.text(350, 250, 'Game Over!', { font: '40px Charcoal', fill: '#ff0000' });
+    gameOverText.visible = false;
+    gameOverButton = this.add.text(350, 300, 'Restart', { font: '40px Charcoal', fill: '#ffffff' });
+    gameOverButton.setInteractive();
+    gameOverButton.once('pointerdown', actionOnClick, this);
+    gameOverButton.visible = false;
     scoreText = this.add.text(16, 16, 'Score: 0', { font: '40px Charcoal', fill: '#000' });
 
 
@@ -202,6 +210,13 @@ function collectStar (player, star)
     }
 }
 
+function actionOnClick () 
+{
+
+    location.reload();
+
+}
+
 function hitBomb (player, bomb)
 {
     this.physics.pause();
@@ -210,7 +225,8 @@ function hitBomb (player, bomb)
 
     player.anims.play('turn');
 
-    gameOver = true;
+    gameOverText.visible = true;
+    gameOverButton.visible = true;
 }
 
 </script>
